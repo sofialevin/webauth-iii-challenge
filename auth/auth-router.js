@@ -24,6 +24,29 @@ router.post('/register', (req, res) => {
     });
 });
 
+router.post('/login', (req, res) => {
+  let { username, password } = req.body;
+
+  Users.findBy({ username })
+    .then(user => {
+      if (user && bcrypt.compareSync(password, user.password)) {
+
+        const token = signToken(user);
+
+        res.status(200).json({
+          token: token,
+          message: `Welcome back ${user.username}!`,
+        });
+      } else {
+        res.status(401).json({ message: 'Invalid Credentials' });
+      }
+    })
+    .catch(error => {
+      console.log(error)
+      res.status(500).json(error);
+    });
+});
+
 function signToken(user) {
   const payload = {
     username: user.username,
