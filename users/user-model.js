@@ -4,6 +4,7 @@ module.exports = {
   add,
   find,
   findBy,
+  findByDepartment,
   findById,
 };
 
@@ -17,6 +18,12 @@ function findBy(filter) {
     .where(filter)
     .select('id', 'username', 'department', 'password')
     .first();
+}
+
+function findByDepartment(department) {
+  return db('users')
+    .where({department: department})
+    .select('id', 'username', 'department')
 }
 
 function add(user) {
