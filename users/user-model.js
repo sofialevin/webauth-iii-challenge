@@ -32,7 +32,7 @@ function add(user) {
     .then(ids => {
       const [id] = ids;
       return findById(id);
-    });
+    })
 }
 
 function findById(id) {

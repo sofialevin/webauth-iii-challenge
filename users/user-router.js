@@ -7,8 +7,6 @@ const restricted = require('../auth/restricted-middleware.js');
 router.get('/', restricted, (req, res) => {
   const { department } = req.token;
 
-  console.log("token", req.token)
-
   Users.findByDepartment(department)
     .then(users => {
       res.status(200).json(users);

@@ -13,7 +13,6 @@ router.post('/register', (req, res) => {
 
   Users.add(user)
     .then(saved => {
-      console.log(saved)
       res.status(201).json({
         token: token,
         message: `Welcome ${user.username}!`,
