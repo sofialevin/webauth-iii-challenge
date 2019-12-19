@@ -27,7 +27,7 @@ function findByDepartment(department) {
 }
 
 function add(user) {
-  return db("users")
+  return db('users')
     .insert(user, "id")
     .then(ids => {
       const [id] = ids;
